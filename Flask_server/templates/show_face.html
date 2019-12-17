@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for image in images %}
+        <div align="center">
+            <img src="{{ image[1] }}" width="400" height=auto alt="你的图片被外星人劫持了～～"/>
+            <h2> {{ image[0] }}</h2>
+        </div>
+    {% endfor %}
+{% endblock %}

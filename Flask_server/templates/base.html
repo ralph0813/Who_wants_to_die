@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>Who_wants_to_die?</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+
+<body>
+<h1>Who wants to die?</h1>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/upload_face">Add Face</a></li>
+        <li><a href="/show_face">Show face</a></li>
+        <li><a href="/detect">Detect</a></li>
+    </ul>
+</nav>
+<div id="content">{% block content %}{% endblock %}</div>
+<div id="footer">{% block footer %}{% endblock %}</div>
+</body>
+<footer>
+    <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}"
+         title="to~to~ro~">
+    <small>&copy; 2019 <a href="https://www.ralphlu.top">Ralph Lu的博客</a></small>
+</footer>
+
+</html>

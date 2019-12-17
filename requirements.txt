@@ -1,0 +1,14 @@
+waitress
+face_recognition
+flask
+requests
+numpy
+opencv-python
+torch >= 1.2
+matplotlib
+pycocotools
+tqdm
+tb-nightly
+future
+Pillow
+

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        <p>
+            {{ form.name.label }}
+            {{ form.name(size=10) }}<br>
+            {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.csrf_token }}
+            {{ form.image.label }}
+            {{ form.image }}
+            {% for error in form.image.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+            <br>
+            {{ form.submit }}
+        </p>
+
+    </form>
+{% endblock %}

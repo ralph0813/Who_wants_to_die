@@ -1,0 +1,8 @@
+classes= 80
+train  = /home/pjreddie/data/coco/trainvalno5k.txt
+valid  = coco_testdev
+#valid = data/coco_val_5k.list
+names = /Users/ralph/github/Who_wants_to_die/weights/coco/coco.names
+backup = /home/pjreddie/backup/
+eval=coco
+
