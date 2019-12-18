@@ -7,6 +7,7 @@ import numpy as np
 from waitress import serve
 import time
 
+basepath = os.path.dirname(__file__)  # 当前文件所在路径
 
 def formate_image(img, new_shape=416, color=(128, 128, 128)):
     shape = img.shape[:2]
@@ -154,9 +155,9 @@ def load_model():
     if not os.path.exists(out_path):
         os.mkdir(out_path)
 
-    cfg = 'cfg/hat_608.cfg'
-    data = 'data/hat_608.data'
-    weights = 'weights/hat_608.weights'
+    cfg = os.path.join(basedir,'cfg/hat_608.cfg')
+    data =  os.path.join(basedir,'data/hat_608.data')
+    weights =  os.path.join(basedir,'weights/hat_608.weights')
     with torch.no_grad():
         # init
         init = init_network(cfg, data, weights)

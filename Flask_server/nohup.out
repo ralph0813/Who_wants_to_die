@@ -1,0 +1,15 @@
+已注册人脸表	
+Ralph-1576642015.jpg 	Ralph-1576642015
+Jim-1576643732.jpg 	Jim-1576643732
+Satomi-1576600536.png 	Satomi-1576600536
+Joker-1576644643.jpg 	Joker-1576644643
+Nancy-1576645622.jpg 	Nancy-1576645622
+su-1576640834.jpg 	su-1576640834
+Joker-1576644642.jpg 	Joker-1576644642
+Bob-1576645535.jpg 	Bob-1576645535
+Longping Yuan-1576645881.jpeg 	Longping Yuan-1576645881
+Using CUDA device0 _CudaDeviceProperties(name='GeForce GTX 960M', total_memory=4046MB)
+
+Loading PyTorch model and Flask starting server ...
+Please wait until server has fully started
+Serving on http://0.0.0.0:8000

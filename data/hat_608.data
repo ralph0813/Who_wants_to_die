@@ -1,5 +1,5 @@
 classes = 3
 # train = /root/notebook/darknet/cfg/train_list.txt
 # valid = /root/notebook/darknet/cfg/val_list.txt
-names = data/class.names
+names = /home/ralph/project/Who_wants_to_die/data/class.names
 backup = backup_608/

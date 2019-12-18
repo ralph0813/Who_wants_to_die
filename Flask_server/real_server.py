@@ -4,10 +4,9 @@ import time
 from datetime import timedelta
 import sys
 from flask_wtf import FlaskForm
-
 from wtforms import SubmitField, StringField
-
-from .face_recognice import load_known_faces, recognize, update_known_faces
+from face_recognice import load_known_faces, recognize, update_known_faces
+import flask
 
 sys.path.append('../')
 from simple_detect import load_model, process_img
@@ -15,6 +14,8 @@ from simple_detect import load_model, process_img
 from flask_uploads import UploadSet, configure_uploads, patch_request_class
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.validators import DataRequired
+from waitress import serve
+from torch_server_with_face_recognization import singal_detcet
 
 basepath = os.path.dirname(__file__)  # 当前文件所在路径
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -74,12 +75,11 @@ def upload_face():
             known_face_encoding, known_face_name = res
             known_face_encodings.append(known_face_encoding)
             known_face_names.append(known_face_name)
+            return render_template('upload_ok.html', text=name, file_url=file_url, val1=time.time())
         else:
             return jsonify({"error": 1001, "msg": "No face found, try another photo!"})
-
-        return render_template('upload_ok.html', text=name,
-                               file_url=file_url,
-                               val1=time.time())
+        
+        
     return render_template("upload_face.html", form=form)
 
 
@@ -88,10 +88,11 @@ def show_face():
     images = []
 
     for face_img in os.listdir(os.path.join(basepath, "static/known_faces")):
-        name = face_img.split('-')[0]
-        img_path = os.path.join("static/known_faces", face_img)
-        image = [name, img_path]
-        images.append(image)
+        if face_img.split('.')[-1] in ALLOWED_EXTENSIONS:
+            name = face_img.split('-')[0]
+            img_path = os.path.join("static/known_faces", face_img)
+            image = [name, img_path]
+            images.append(image)
     return render_template("show_face.html", images=images)
 
 
@@ -111,7 +112,12 @@ def detect():
         processed_img_path = os.path.join(basepath, 'static/processed_images')
         res = process_img(ori_img_path=upload_img_path, out_img_name=file_name, img_out_dir=processed_img_path)
         result = recognize(upload_img_path, res, known_face_encodings, known_face_names)
-        return render_template('result.html', name=result[0][0], result=result[0][1],
+        
+        if result[0][1] == "no_helmet":
+            information = "This guy does not wear a helmet, he may die!"
+        else:
+            information = "This guy wears a helmet, he is a good guy!"
+        return render_template('result.html', name=result[0][0], result=information, 
                                img_file=os.path.join("static/processed_images/", file_name),
                                val1=time.time())
 
@@ -119,4 +125,4 @@ def detect():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    serve(app,host='0.0.0.0', port=8000)

@@ -36,7 +36,7 @@ def face_boxes(res):
 
 
 # Init face recognice
-def load_known_faces(face_dir='/Users/ralph/github/Who_wants_to_die/Flask_server/static/known_faces'):
+def load_known_faces(face_dir='static/known_faces'):
     known_face_encodings = []
     known_face_names = []
     print("Already registered\t")

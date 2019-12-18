@@ -86,9 +86,9 @@ def load_model():
     out_path = os.path.join('output')
     if not os.path.exists(out_path):
         os.mkdir(out_path)
-    cfg = 'cfg/hat_608.cfg'
-    data = 'data/hat_608.data'
-    weights = 'weights/hat_608.weights'
+    cfg =  os.path.join(basepath,'cfg/hat_608.cfg')
+    data =  os.path.join(basepath,'data/hat_608.data')
+    weights =  os.path.join(basepath,'weights/hat_608.weights')
     with torch.no_grad():
         # init
         model = init_network(cfg, data, weights)
